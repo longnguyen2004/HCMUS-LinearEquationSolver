@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "reader.h"
+#include "fraction.h"
 
 int main()
 {
@@ -41,11 +42,25 @@ int main()
     }
     case 2:
     {
-        int numA, denA, numB, denB, numC = 0, denC = 1, numD = 0, denD = 1;
+        int numA, denA, numB, denB, numC = 0, denC = 1, numD = 0, denD = 1, numV, denV ;
         if (eq_type == 1)
             read_eq_fraction_type1(numA, denA, numB, denB);
         else
             read_eq_fraction_type2(numA, denA, numB, denB, numC, denC, numD, denD);
+        int status = solve_eq_fraction(numV, denV, numA, denA, numB, denB, numC, denC, numD, denD);
+        switch (status) {
+            case -1:
+                std::cout << "Phuong trinh co vo so nghiem\n";
+                break;
+            case 0:
+                std::cout << "Phuon trinh vo nghiem\n";
+                break;
+            case 1:
+                if (denV == 1)
+                    std::cout << "x = " << numV << "\n";
+                else 
+                    std::cout << "x = " << numV << "/" << denV << "\n";
+        }
         break;
     }
     case 3:
@@ -62,13 +77,3 @@ int main()
     return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
