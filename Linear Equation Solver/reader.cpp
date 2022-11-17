@@ -34,9 +34,9 @@ void read_eq_number_type2(double& a, double& b, double& c, double& d)
 }
 void read_eq_fraction_type1(int& numA, int& denA, int& numB, int& denB, char name1, char name2)
 {
-	std::cout << "Nhập hệ số " << name1 << ": ";
+	std::cout << "Nhập hệ số " << name1 << '\n';
 	read_fraction(numA, denA);
-	std::cout << "Nhập hệ số " << name2 << ": ";
+	std::cout << "Nhập hệ số " << name2 << '\n';
 	read_fraction(numB, denB);
 }
 void read_eq_fraction_type2(int& numA, int& denA, int& numB, int& denB, int& numC, int& denC, int& numD, int& denD)
@@ -46,9 +46,9 @@ void read_eq_fraction_type2(int& numA, int& denA, int& numB, int& denB, int& num
 }
 void read_eq_complex_type1(double& realA, double& imagA, double& realB, double& imagB, char name1, char name2)
 {
-	std::cout << "Nhập hệ số " << name1 << ": ";
+	std::cout << "Nhập hệ số " << name1 << '\n';
 	read_complex(realA, imagA);
-	std::cout << "Nhập hệ số " << name2 << ": ";
+	std::cout << "Nhập hệ số " << name2 << '\n';
 	read_complex(realB, imagB);
 }
 void read_eq_complex_type2(double& realA, double& imagA, double& realB, double& imagB, double& realC, double& imagC, double& realD, double& imagD)
