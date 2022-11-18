@@ -12,12 +12,19 @@ int main()
     int eq_type;
     std::cout
         << "GIẢI PHƯƠNG TRÌNH BẬC NHẤT\n"
+        << '\n'
         << "Chọn kiểu phương trình: \n"
         << "1. Ax + B = 0\n"
         << "2. Ax + B = Cx + D\n"
-        << '\n'
-        << "Lựa chọn của bạn: ";
-    std::cin >> eq_type;
+        << '\n';
+    while (true)
+    {
+        std::cout << "Lựa chọn của bạn: ";
+        std::cin >> eq_type;
+        if (eq_type == 1 || eq_type == 2) break;
+        std::cout << "Vui lòng chọn lại!\n";
+        std::cout << '\n';
+    }
     std::cout << '\n';
 
     int num_type;
@@ -26,9 +33,15 @@ int main()
         << "1. Số thực\n"
         << "2. Phân số\n"
         << "3. Số phức\n"
-        << '\n'
-        << "Lựa chọn của bạn: ";
-    std::cin >> num_type;
+        << '\n';
+    while (true)
+    {
+        std::cout << "Lựa chọn của bạn: ";
+        std::cin >> num_type;
+        if (num_type >= 1 && num_type <= 3) break;
+        std::cout << "Vui lòng chọn lại!\n";
+        std::cout << '\n';
+    }
     std::cout << '\n';
 
     int status;
