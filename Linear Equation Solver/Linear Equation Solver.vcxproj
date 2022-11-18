@@ -131,6 +131,7 @@
     <ClCompile Include="fraction.cpp" />
     <ClCompile Include="complex.cpp" />
     <ClCompile Include="Linear Equation Solver.cpp" />
+    <ClCompile Include="number.cpp" />
     <ClCompile Include="reader.cpp" />
     <ClCompile Include="writer.cpp" />
   </ItemGroup>
@@ -140,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="fraction.h" />
     <ClInclude Include="complex.h" />
+    <ClInclude Include="number.h" />
     <ClInclude Include="reader.h" />
     <ClInclude Include="writer.h" />
   </ItemGroup>
