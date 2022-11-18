@@ -27,6 +27,7 @@ bool complex_div(double& real, double& imag, double a, double b, double c, doubl
 	double den = c * c + d * d;
 	real = (a * c + b * d) / den;
 	imag = (b * c - a * d) / den;
+	return true;
 }
 
 // Solve Ax + B = Cx + D, with the coefficients as complex numbers
