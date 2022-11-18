@@ -4,6 +4,7 @@
 #include <iostream>
 #include "reader.h"
 #include "writer.h"
+#include "number.h"
 #include "fraction.h"
 #include "complex.h"
 
@@ -54,6 +55,10 @@ int main()
             read_eq_number_type1(a, b);
         else
             read_eq_number_type2(a, b, c, d);
+        double x;
+        status = solve_eq_number(x, a, b, c, d);
+        if (status == 1)
+            std::cout << "Phương trình có 1 nghiệm: " << x << '\n';
         break;
     }
     case 2:
