@@ -1,5 +1,5 @@
 #include "number.h"
-int solve_eq_number(double a, double b, double c, double d, double& x)
+int solve_eq_number(double& x, double a, double b, double c, double d)
 {
 	if ((a - c) == 0)
 	{
