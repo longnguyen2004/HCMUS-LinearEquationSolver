@@ -11,8 +11,8 @@ int solve_eq_number(double& x, double a, double b, double c, double d)
 	else
 	{
 		x = (d - b) / (a - c);
-		if (x == -0)
-			x = 0;
+		if (x == -0.0)
+			x = 0.0;
 		return 1;       // co nghiem tra ve 1
 	}
 }
