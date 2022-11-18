@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include "reader.h"
+#include "writer.h"
+#include "fraction.h"
+#include "complex.h"
 
 int main()
 {
@@ -28,6 +31,7 @@ int main()
     std::cin >> num_type;
     std::cout << '\n';
 
+    int status;
     switch (num_type)
     {
     case 1:
@@ -46,6 +50,14 @@ int main()
             read_eq_fraction_type1(numA, denA, numB, denB);
         else
             read_eq_fraction_type2(numA, denA, numB, denB, numC, denC, numD, denD);
+        int numV, denV;
+        status = solve_eq_fraction(numV, denV, numA, denA, numB, denB, numC, denC, numD, denD);
+        if (status == 1)
+        {
+            std::cout << "Phương trình có 1 nghiệm: ";
+            write_fraction(numV, denV);
+            std::cout << '\n';
+        }
         break;
     }
     case 3:
@@ -55,10 +67,21 @@ int main()
             read_eq_complex_type1(realA, imagA, realB, imagB);
         else
             read_eq_complex_type2(realA, imagA, realB, imagB, realC, imagC, realD, imagD);
+        double realV, imagV;
+        status = solve_eq_complex(realV, imagV, realA, imagA, realB, imagB, realC, imagC, realD, imagD);
+        if (status == 1)
+        {
+            std::cout << "Phương trình có 1 nghiệm: ";
+            write_complex(realV, imagV);
+            std::cout << '\n';
+        }
         break;
     }
     }
-
+    if (status == -1)
+        std::cout << "Phương trình có vô số nghiệm\n";
+    else if (status == 0)
+        std::cout << "Phương trình vô nghiệm\n";
     return 0;
 }
 
