@@ -49,7 +49,7 @@ bool fraction_div(int& num, int& den, int a, int b, int c, int d)
 }
 
 // Solve Ax + B = Cx + D, with the coefficients as fractions
-int solve_eq_fraction(int& numV, int& denV, int numA, int denA, int numB, int denB, int numC, int denC, int numD, int denD)
+int solve_eq_fraction(int& numX, int& denX, int numA, int denA, int numB, int denB, int numC, int denC, int numD, int denD)
 {
 	// 1. Rearrange: (A - C)x = D - B
 	fraction_sub(numA, denA, numA, denA, numC, denC);
@@ -65,7 +65,7 @@ int solve_eq_fraction(int& numV, int& denV, int numA, int denA, int numB, int de
 	}
 	else {
 		// 2.3 x = (D - B)/(A - C)
-		fraction_div(numV, denV, numB, denB, numA, denA);
+		fraction_div(numX, denX, numB, denB, numA, denA);
 		return 1;
 	}
 }

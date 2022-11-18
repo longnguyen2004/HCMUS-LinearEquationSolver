@@ -44,7 +44,7 @@ int main()
     }
     std::cout << '\n';
 
-    int status;
+    int status = 0;
     switch (num_type)
     {
     case 1:
@@ -63,12 +63,12 @@ int main()
             read_eq_fraction_type1(numA, denA, numB, denB);
         else
             read_eq_fraction_type2(numA, denA, numB, denB, numC, denC, numD, denD);
-        int numV, denV;
-        status = solve_eq_fraction(numV, denV, numA, denA, numB, denB, numC, denC, numD, denD);
+        int numX, denX;
+        status = solve_eq_fraction(numX, denX, numA, denA, numB, denB, numC, denC, numD, denD);
         if (status == 1)
         {
             std::cout << "Phương trình có 1 nghiệm: ";
-            write_fraction(numV, denV);
+            write_fraction(numX, denX);
             std::cout << '\n';
         }
         break;
@@ -80,12 +80,12 @@ int main()
             read_eq_complex_type1(realA, imagA, realB, imagB);
         else
             read_eq_complex_type2(realA, imagA, realB, imagB, realC, imagC, realD, imagD);
-        double realV, imagV;
-        status = solve_eq_complex(realV, imagV, realA, imagA, realB, imagB, realC, imagC, realD, imagD);
+        double realX, imagX;
+        status = solve_eq_complex(realX, imagX, realA, imagA, realB, imagB, realC, imagC, realD, imagD);
         if (status == 1)
         {
             std::cout << "Phương trình có 1 nghiệm: ";
-            write_complex(realV, imagV);
+            write_complex(realX, imagX);
             std::cout << '\n';
         }
         break;

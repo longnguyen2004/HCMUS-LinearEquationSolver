@@ -30,7 +30,7 @@ bool complex_div(double& real, double& imag, double a, double b, double c, doubl
 }
 
 // Solve Ax + B = Cx + D, with the coefficients as complex numbers
-int solve_eq_complex(double& realV, double& imagV,
+int solve_eq_complex(double& realX, double& imagX,
 	double realA, double imagA, double realB, double imagB,
 	double realC, double imagC, double realD, double imagD
 )
@@ -51,7 +51,7 @@ int solve_eq_complex(double& realV, double& imagV,
 	else
 	{
 		// 2.3: x = (D - B)/(A - C)
-		complex_div(realV, imagV, realB, imagB, realA, imagA);
+		complex_div(realX, imagX, realB, imagB, realA, imagA);
 		return 1;
 	}
 }
