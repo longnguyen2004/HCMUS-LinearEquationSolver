@@ -21,6 +21,7 @@
     <ClCompile Include="reader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fraction.cpp">
     <ClCompile Include="complex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -32,6 +33,7 @@
     <ClInclude Include="reader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="fraction.h">
     <ClInclude Include="complex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
