@@ -22,9 +22,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="fraction.cpp">
-	  <Filter>Source Files</Filter>
-	</ClCompile>
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="complex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="writer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -36,9 +39,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="fraction.h">
-	  <Filter>Header Files</Filter>
-	</ClInclude>
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="complex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="writer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
