@@ -129,14 +129,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="fraction.cpp" />
+    <ClCompile Include="complex.cpp" />
     <ClCompile Include="Linear Equation Solver.cpp" />
     <ClCompile Include="reader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="fraction.h" />
+    <ClInclude Include="complex.h" />
     <ClInclude Include="reader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
