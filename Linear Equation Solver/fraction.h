@@ -1,4 +1,6 @@
 #pragma once
+#include <iosfwd>
+
 class Fraction
 {
 public:
