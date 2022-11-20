@@ -7,6 +7,7 @@
 #include "number.h"
 #include "fraction.h"
 #include "complex.h"
+#include "solver.h"
 
 int main()
 {
@@ -56,43 +57,36 @@ int main()
         else
             read_eq_number_type2(a, b, c, d);
         double x;
-        status = solve_eq_number(x, a, b, c, d);
+        status = solve_eq(x, a, b, c, d);
         if (status == 1)
+        {
+            if (x == -0.0) x = 0.0;
             std::cout << "Phương trình có 1 nghiệm: " << x << '\n';
+        }
         break;
     }
     case 2:
     {
-        int numA, denA, numB, denB, numC = 0, denC = 1, numD = 0, denD = 1;
+        Fraction a, b, c, d, x;
         if (eq_type == 1)
-            read_eq_fraction_type1(numA, denA, numB, denB);
+            read_eq_fraction_type1(a, b);
         else
-            read_eq_fraction_type2(numA, denA, numB, denB, numC, denC, numD, denD);
-        int numX, denX;
-        status = solve_eq_fraction(numX, denX, numA, denA, numB, denB, numC, denC, numD, denD);
+            read_eq_fraction_type2(a, b, c, d);
+        status = solve_eq(x, a, b, c, d);
         if (status == 1)
-        {
-            std::cout << "Phương trình có 1 nghiệm: ";
-            write_fraction(numX, denX);
-            std::cout << '\n';
-        }
+            std::cout << "Phương trình có 1 nghiệm: " << x << '\n';
         break;
     }
     case 3:
     {
-        double realA, imagA, realB, imagB, realC = 0, imagC = 0, realD = 0, imagD = 0;
+        Complex a, b, c, d, x;
         if (eq_type == 1)
-            read_eq_complex_type1(realA, imagA, realB, imagB);
+            read_eq_complex_type1(a, b);
         else
-            read_eq_complex_type2(realA, imagA, realB, imagB, realC, imagC, realD, imagD);
-        double realX, imagX;
-        status = solve_eq_complex(realX, imagX, realA, imagA, realB, imagB, realC, imagC, realD, imagD);
+            read_eq_complex_type2(a, b, c, d);
+        status = solve_eq(x, a, b, c, d);
         if (status == 1)
-        {
-            std::cout << "Phương trình có 1 nghiệm: ";
-            write_complex(realX, imagX);
-            std::cout << '\n';
-        }
+            std::cout << "Phương trình có 1 nghiệm: " << x << '\n';
         break;
     }
     }
