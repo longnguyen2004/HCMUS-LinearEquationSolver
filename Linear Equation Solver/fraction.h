@@ -3,6 +3,8 @@
 
 class Fraction
 {
+	long long _num, _den;
+	void normalize();
 public:
 	Fraction(long long num = 0, long long den = 1);
 	long long num() const;

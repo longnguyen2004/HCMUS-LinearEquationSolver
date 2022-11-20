@@ -3,6 +3,7 @@
 
 class Complex
 {
+	double _real, _imag;
 public:
 	Complex(double real = 0, double imag = 0);
 	double real() const;
