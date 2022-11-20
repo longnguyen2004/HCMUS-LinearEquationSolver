@@ -60,7 +60,7 @@ int solve_eq_fraction(int& numX, int& denX, int numA, int denA, int numB, int de
 		// 2.1 B == 0 => Infinite solutions
 		if (!numB) return -1;
 
-		// 2.2 B != 0 No solutions
+		// 2.2 B != 0 => No solutions
 		else return 0;
 	}
 	else {

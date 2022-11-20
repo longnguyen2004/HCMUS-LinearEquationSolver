@@ -46,7 +46,7 @@ int solve_eq_complex(double& realX, double& imagX,
 		// 2.1 B == 0 => Infinite solutions
 		if (realB == 0 && imagB == 0) return -1;
 
-		// 2.2 B != 0: No solutions
+		// 2.2 B != 0 => No solutions
 		else return 0;
 	}
 	else
