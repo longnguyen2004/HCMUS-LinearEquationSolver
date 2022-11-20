@@ -4,9 +4,9 @@
 template <typename T>
 int solve_eq(T& x, T a, T b, T c, T d)
 {
-	// 1. Rearrange: (A - C)x = D - B;
-	a = a - c;
-	b = d - b;
+	// 1. Rearrange: (A - C)x + B - D = 0;
+	a -= c;
+	b -= d;
 
 	// 2. Special case: A == 0
 	if (a == 0)
@@ -16,7 +16,7 @@ int solve_eq(T& x, T a, T b, T c, T d)
 	}
 	else
 	{
-		x = b / a;
+		x = -b / a;
 		return 1;
 	}
 }
