@@ -1,71 +1,116 @@
 #include "fraction.h"
 #include <cmath>
-using namespace std;
+#include <iostream>
 
-int fGCD(int a, int b) {
-	if (a == b || b == 0) return a;
-	else return fGCD(b, a % b);
+long long GCD(long long a, long long b) {
+	if (b == 0) return a;
+	else return GCD(b, a % b);
 }
 
-// Simplify the fraction
-void simplify(int& numV, int& denV) {
-	int GCD = fGCD(abs(numV), abs(denV));
-	if (denV < 0) {
-		numV /= -1;
-		denV /= -1;
+class Fraction
+{
+private:
+	long long _num, _den;
+	void normalize()
+	{
+		long long gcd = GCD(std::abs(_num), std::abs(_den));
+		_num /= gcd;
+		_den /= gcd;
+		if (_den < 0)
+		{
+			_num *= -1;
+			_den *= -1;
+		}
 	}
-	numV /= GCD;
-	denV /= GCD;
-}
 
-// Calculate a/b + c/d
-void fraction_add(int& num, int& den, int a, int b, int c, int d)
-{
-	den = b * d;
-	num = a * d + b * c;
-	simplify(num, den);
-}
-
-// Calculate a/b - c/d
-void fraction_sub(int& num, int& den, int a, int b, int c, int d)
-{
-	fraction_add(num, den, a, b, -c, d);
-}
-
-// Calculate a/b * c/d
-void fraction_mul(int& num, int& den, int a, int b, int c, int d)
-{
-	num = a * c;
-	den = b * d;
-	simplify(num, den);
-}
-
-// Calculate a/b / c/d
-bool fraction_div(int& num, int& den, int a, int b, int c, int d)
-{
-	if (c == 0) return false;
-	fraction_mul(num, den, a, b, d, c);
-	return true;
-}
-
-// Solve Ax + B = Cx + D, with the coefficients as fractions
-int solve_eq_fraction(int& numX, int& denX, int numA, int denA, int numB, int denB, int numC, int denC, int numD, int denD)
-{
-	// 1. Rearrange: (A - C)x = D - B
-	fraction_sub(numA, denA, numA, denA, numC, denC);
-	fraction_sub(numB, denB, numD, denD, numB, denB);
-
-	// 2. Special case: A == 0
-	if (!numA) {
-		// 2.1 B == 0 => Infinite solutions
-		if (!numB) return -1;
-
-		// 2.2 B != 0 => No solutions
-		else return 0;
+public:
+	Fraction(long long num, long long den) : _num(num), _den(den)
+	{
+		this->normalize();
 	}
-	else {
-		// 2.3 x = (D - B)/(A - C)
-		fraction_div(numX, denX, numB, denB, numA, denA);
-		return 1;
+
+	// Returns the numerator and denominator
+	long long num() const { return _num; }
+	long long den() const { return _den; }
+
+	// Returns the inverse fraction
+	Fraction inverse() const
+	{
+		return Fraction(this->_den, this->_num);
 	}
-}
+
+	// Unary minus: Returns -a
+	Fraction operator-() const
+	{
+		return Fraction(-this->_num, this->_den);
+	}
+
+	// Comparison operators
+	bool operator==(const Fraction& rhs) const
+	{
+		return this->_num == rhs._num && this->_den == rhs._den;
+	}
+	bool operator!=(const Fraction& rhs) const
+	{
+		return !(*this == rhs);
+	}
+
+	// Compound assignment operators
+	// Compound add: Adds b to a
+	Fraction& operator+=(const Fraction& rhs)
+	{
+		this->_num = this->_num * rhs._den + this->_den * rhs._num;
+		this->_den = this->_den * rhs._den;
+		normalize();
+		return *this;
+	}
+
+	// Compound sub: Subtract b from a
+	Fraction& operator-=(const Fraction& rhs)
+	{
+		return (*this += -rhs);
+	}
+
+	// Compound mul: Multiply b into a
+	Fraction& operator*=(const Fraction& rhs)
+	{
+		this->_num *= rhs._num;
+		this->_den *= rhs._den;
+		normalize();
+		return *this;
+	}
+
+	// Compound div: Divide b from a
+	// No div by 0 checking is done here, do it yourself!
+	Fraction& operator/=(const Fraction& rhs)
+	{
+		return (*this *= rhs.inverse());
+	}
+
+	// Binary operators
+	const Fraction operator+(const Fraction& rhs) const
+	{
+		return (Fraction(*this) += rhs);
+	}
+	const Fraction operator-(const Fraction& rhs) const
+	{
+		return (Fraction(*this) -= rhs);
+	}
+	const Fraction operator*(const Fraction& rhs) const
+	{
+		return (Fraction(*this) *= rhs);
+	}
+	const Fraction operator/(const Fraction& rhs) const
+	{
+		return (Fraction(*this) /= rhs);
+	}
+
+	// Output stream operator
+	friend std::ostream& operator<<(std::ostream& os, const Fraction& frac)
+	{
+		if (std::abs(frac._num) % frac._den == 0)
+			os << frac._num / frac._den;
+		else
+			os << frac._num << '/' << frac._den;
+	}
+};
