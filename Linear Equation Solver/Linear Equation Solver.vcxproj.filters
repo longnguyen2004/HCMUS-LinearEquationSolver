@@ -53,5 +53,8 @@
     <ClInclude Include="number.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="solver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

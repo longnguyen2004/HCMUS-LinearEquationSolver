@@ -143,6 +143,7 @@
     <ClInclude Include="complex.h" />
     <ClInclude Include="number.h" />
     <ClInclude Include="reader.h" />
+    <ClInclude Include="solver.h" />
     <ClInclude Include="writer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
