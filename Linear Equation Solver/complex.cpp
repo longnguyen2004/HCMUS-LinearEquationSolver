@@ -1,58 +1,75 @@
 #include "complex.h"
+#include <iostream>
+#include <iomanip>
 
-// Calculate (a + bi) + (c + di)
-void complex_add(double& real, double& imag, double a, double b, double c, double d)
+class Complex
 {
-	real = a + c;
-	imag = b + d;
-}
-
-// Calculate (a + bi) - (c + di)
-void complex_sub(double& real, double& imag, double a, double b, double c, double d)
-{
-	complex_add(real, imag, a, b, -c, -d);
-}
-
-// Calculate (a + bi) * (c + di)
-void complex_mul(double& real, double& imag, double a, double b, double c, double d)
-{
-	real = a * c - b * d;
-	imag = a * d + b * c;
-}
-
-// Calculate (a + bi) / (c + di)
-bool complex_div(double& real, double& imag, double a, double b, double c, double d)
-{
-	if (c == 0 && d == 0) return false;
-	double den = c * c + d * d;
-	real = (a * c + b * d) / den;
-	imag = (b * c - a * d) / den;
-	return true;
-}
-
-// Solve Ax + B = Cx + D, with the coefficients as complex numbers
-int solve_eq_complex(double& realX, double& imagX,
-	double realA, double imagA, double realB, double imagB,
-	double realC, double imagC, double realD, double imagD
-)
-{
-	// 1. Rearrange: (A - C)x = D - B
-	complex_sub(realA, imagA, realA, imagA, realC, imagC);
-	complex_sub(realB, imagB, realD, imagD, realB, imagB);
-
-	// 2. Special case: A == 0
-	if (realA == 0 && imagA == 0)
+	double _real, _imag;
+public:
+	Complex(double real, double imag) : _real(real), _imag(imag)
 	{
-		// 2.1 B == 0 => Infinite solutions
-		if (realB == 0 && imagB == 0) return -1;
 
-		// 2.2 B != 0 => No solutions
-		else return 0;
 	}
-	else
+	double real() const { return _real; }
+	double imag() const { return _imag; }
+	Complex operator-() const
 	{
-		// 2.3: x = (D - B)/(A - C)
-		complex_div(realX, imagX, realB, imagB, realA, imagA);
-		return 1;
+		return Complex(-this->_real, -this->_imag);
 	}
-}
+	bool operator==(const Complex& rhs) const
+	{
+		return this->_real == rhs._real && this->_imag == rhs._imag;
+	}
+	bool operator!=(const Complex& rhs) const
+	{
+		return !(*this == rhs);
+	}
+	Complex& operator+=(const Complex& rhs)
+	{
+		this->_real += rhs._real;
+		this->_imag += rhs._imag;
+		return *this;
+	}
+	Complex& operator-=(const Complex& rhs)
+	{
+		return (*this += -rhs);
+	}
+	Complex& operator*=(const Complex& rhs)
+	{
+		this->_real = this->_real * rhs._real - this->_imag * rhs._imag;
+		this->_imag = this->_real * rhs._imag + this->_imag * rhs._real;
+		return *this;
+	}
+	Complex& operator/=(const Complex& rhs)
+	{
+		double a = this->_real, b = this->_imag, c = rhs._real, d = rhs._imag;
+		double den = c * c + d * d;
+		this->_real = (a * c + b * d) / den;
+		this->_imag = (b * c - a * d) / den;
+		return *this;
+	}
+	const Complex operator+(const Complex& rhs) const
+	{
+		return (Complex(*this) += rhs);
+	}
+	const Complex operator-(const Complex& rhs) const
+	{
+		return (Complex(*this) -= rhs);
+	}
+	const Complex operator*(const Complex& rhs) const
+	{
+		return (Complex(*this) *= rhs);
+	}
+	const Complex operator/(const Complex& rhs) const
+	{
+		return (Complex(*this) /= rhs);
+	}
+	friend std::ostream& operator<<(std::ostream& os, const Complex& comp)
+	{
+		auto flags = os.flags();
+		os << comp._real;
+		if (comp._imag != 0)
+			os << ' ' << std::showpos << comp._imag << 'i';
+		os.flags(flags);
+	}
+};

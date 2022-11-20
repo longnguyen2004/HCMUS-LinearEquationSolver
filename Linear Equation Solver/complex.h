@@ -1,6 +1,20 @@
 #pragma once
-
-int solve_eq_complex(double& realX, double& imagX,
-	double realA, double imagA, double realB, double imagB,
-	double realC, double imagC, double realD, double imagD
-);
+class Complex
+{
+public:
+	Complex(double real = 0, double imag = 0);
+	double real() const;
+	double imag() const;
+	Complex operator-() const;
+	bool operator==(const Complex& rhs) const;
+	bool operator!=(const Complex& rhs) const;
+	Complex& operator+=(const Complex& rhs);
+	Complex& operator-=(const Complex& rhs);
+	Complex& operator*=(const Complex& rhs);
+	Complex& operator/=(const Complex& rhs);
+	const Complex operator+(const Complex& rhs) const;
+	const Complex operator-(const Complex& rhs) const;
+	const Complex operator*(const Complex& rhs) const;
+	const Complex operator/(const Complex& rhs) const;
+	friend std::ostream& operator<<(std::ostream& os, const Complex& comp);
+};
