@@ -14,5 +14,8 @@ void write_complex(double real, double imag)
 {
 	std::cout << real;
 	if (imag != 0)
-		std::cout << " + " << imag << 'i';
+	{
+		if (imag > 0) std::cout << '+';
+		std::cout << imag << 'i';
+	}
 }
