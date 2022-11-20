@@ -58,7 +58,7 @@ int main()
         double x;
         status = solve_eq_number(x, a, b, c, d);
         if (status == 1)
-            std::cout << "Phương trình có 1 nghiệm: " << x << '\n';
+            std::cout << "Phương trình có nghiệm x = " << x << '\n';
         break;
     }
     case 2:
@@ -72,7 +72,7 @@ int main()
         status = solve_eq_fraction(numX, denX, numA, denA, numB, denB, numC, denC, numD, denD);
         if (status == 1)
         {
-            std::cout << "Phương trình có 1 nghiệm: ";
+            std::cout << "Phương trình có nghiệm x = ";
             write_fraction(numX, denX);
             std::cout << '\n';
         }
@@ -89,7 +89,7 @@ int main()
         status = solve_eq_complex(realX, imagX, realA, imagA, realB, imagB, realC, imagC, realD, imagD);
         if (status == 1)
         {
-            std::cout << "Phương trình có 1 nghiệm: ";
+            std::cout << "Phương trình có nghiệm x = ";
             write_complex(realX, imagX);
             std::cout << '\n';
         }
