@@ -4,7 +4,6 @@
 #include <iostream>
 #include "reader.h"
 #include "writer.h"
-#include "number.h"
 #include "fraction.h"
 #include "complex.h"
 #include "solver.h"
