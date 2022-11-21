@@ -25,7 +25,7 @@ int main()
         {
             std::cout << "Lựa chọn của bạn: ";
             std::cin >> eq_type;
-            if (eq_type >= 0 || eq_type <= 2) break;
+            if (eq_type >= 0 && eq_type <= 2) break;
             std::cout << "Vui lòng chọn lại!\n";
             std::cout << '\n';
         }
