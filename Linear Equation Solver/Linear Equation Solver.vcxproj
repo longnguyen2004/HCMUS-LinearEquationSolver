@@ -136,7 +136,6 @@
     <ClCompile Include="complex.cpp" />
     <ClCompile Include="Linear Equation Solver.cpp" />
     <ClCompile Include="reader.cpp" />
-    <ClCompile Include="writer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -146,7 +145,6 @@
     <ClInclude Include="complex.h" />
     <ClInclude Include="reader.h" />
     <ClInclude Include="solver.h" />
-    <ClInclude Include="writer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
