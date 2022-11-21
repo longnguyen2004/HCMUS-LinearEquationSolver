@@ -9,7 +9,7 @@ Fraction read_fraction()
 	std::cin >> num;
 	do
 	{
-		std::cout << "Nhập mẫu số: ";
+		std::cout << "Nhập mẫu số (khác 0): ";
 		std::cin >> den;
 	} while (den == 0);
 	return Fraction(num, den);
