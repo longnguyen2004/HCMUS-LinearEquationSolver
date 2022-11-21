@@ -104,6 +104,7 @@ int main()
             std::cout << "Phương trình có vô số nghiệm\n";
         else if (status == 0)
             std::cout << "Phương trình vô nghiệm\n";
+        std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
     }
     return 0;
 }
