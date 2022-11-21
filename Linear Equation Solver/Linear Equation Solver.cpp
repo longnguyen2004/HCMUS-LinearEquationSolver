@@ -106,6 +106,7 @@ int main()
             std::cout << "Phương trình vô nghiệm\n";
         std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
     }
+    std::cout << "Bạn đã thoát chương trình!\n";
     return 0;
 }
 
