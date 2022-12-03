@@ -2,12 +2,12 @@
 #include <iostream>
 #include <cmath>
 
-void write_fraction(int num, int den)
+void write_fraction(Fraction a)
 {
-	if (abs(num) % den == 0)
-		std::cout << num / den;
+	if (abs(a.num) % a.den == 0)
+		std::cout << a.num / a.den;
 	else
-		std::cout << num << '/' << den;
+		std::cout << a.num << '/' << a.den;
 }
 
 void write_complex(Complex a)

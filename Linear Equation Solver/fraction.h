@@ -1,2 +1,8 @@
 #pragma once
-int solve_eq_fraction(int& numX, int& denX, int numA, int denA, int numB, int denB, int numC, int denC, int numD, int denD);
+
+struct Fraction
+{
+	int num, den;
+};
+
+int solve_eq_fraction(Fraction& result, Fraction a, Fraction b, Fraction c, Fraction d);

@@ -1,6 +1,6 @@
 #include "fraction.h"
 #include <cmath>
-using namespace std;
+#include <algorithm>
 
 int fGCD(int a, int b) {
 	if (a == b || b == 0) return a;
@@ -8,64 +8,64 @@ int fGCD(int a, int b) {
 }
 
 // Simplify the fraction
-void simplify(int& numV, int& denV) {
-	int GCD = fGCD(abs(numV), abs(denV));
-	if (denV < 0) {
-		numV /= -1;
-		denV /= -1;
+void simplify(Fraction& frac) {
+	int GCD = fGCD(std::abs(frac.num), std::abs(frac.den));
+	if (frac.den < 0) {
+		frac.num /= -1;
+		frac.den /= -1;
 	}
-	numV /= GCD;
-	denV /= GCD;
+	frac.num /= GCD;
+	frac.den /= GCD;
 }
 
 // Calculate a/b + c/d
-void fraction_add(int& num, int& den, int a, int b, int c, int d)
+Fraction fraction_add(Fraction a, Fraction b)
 {
-	den = b * d;
-	num = a * d + b * c;
-	simplify(num, den);
+	Fraction result = { a.num * b.den + a.den * b.num, a.den * b.den };
+	simplify(result);
+	return result;
 }
 
 // Calculate a/b - c/d
-void fraction_sub(int& num, int& den, int a, int b, int c, int d)
+Fraction fraction_sub(Fraction a, Fraction b)
 {
-	fraction_add(num, den, a, b, -c, d);
+	b.num = -b.num;
+	return fraction_add(a, b);
 }
 
 // Calculate a/b * c/d
-void fraction_mul(int& num, int& den, int a, int b, int c, int d)
+Fraction fraction_mul(Fraction a, Fraction b)
 {
-	num = a * c;
-	den = b * d;
-	simplify(num, den);
+	Fraction result = { a.num * b.num, a.den * b.den };
+	simplify(result);
+	return result;
 }
 
 // Calculate a/b / c/d
-bool fraction_div(int& num, int& den, int a, int b, int c, int d)
+Fraction fraction_div(Fraction a, Fraction b)
 {
-	if (c == 0) return false;
-	fraction_mul(num, den, a, b, d, c);
-	return true;
+	std::swap(b.num, b.den);
+	return fraction_mul(a, b);
 }
 
 // Solve Ax + B = Cx + D, with the coefficients as fractions
-int solve_eq_fraction(int& numX, int& denX, int numA, int denA, int numB, int denB, int numC, int denC, int numD, int denD)
+int solve_eq_fraction(Fraction& result, Fraction a, Fraction b, Fraction c, Fraction d)
 {
 	// 1. Rearrange: (A - C)x = D - B
-	fraction_sub(numA, denA, numA, denA, numC, denC);
-	fraction_sub(numB, denB, numD, denD, numB, denB);
+	a = fraction_sub(a, c);
+	b = fraction_sub(d, b);
 
 	// 2. Special case: A == 0
-	if (!numA) {
+	if (!a.num) {
 		// 2.1 B == 0 => Infinite solutions
-		if (!numB) return -1;
+		if (!a.den) return -1;
 
 		// 2.2 B != 0 => No solutions
 		else return 0;
 	}
 	else {
 		// 2.3 x = (D - B)/(A - C)
-		fraction_div(numX, denX, numB, denB, numA, denA);
+		result = fraction_div(b, a);
 		return 1;
 	}
 }

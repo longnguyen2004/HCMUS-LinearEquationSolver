@@ -67,17 +67,17 @@ int main()
         }
         case 2:
         {
-            int numA, denA, numB, denB, numC = 0, denC = 1, numD = 0, denD = 1;
+            Fraction a, b, c = { 0, 1 }, d = { 0, 1 };
             if (eq_type == 1)
-                read_eq_fraction_type1(numA, denA, numB, denB);
+                read_eq_fraction_type1(a, b);
             else
-                read_eq_fraction_type2(numA, denA, numB, denB, numC, denC, numD, denD);
-            int numX, denX;
-            status = solve_eq_fraction(numX, denX, numA, denA, numB, denB, numC, denC, numD, denD);
+                read_eq_fraction_type2(a, b, c, d);
+            Fraction x;
+            status = solve_eq_fraction(x, a, b, c, d);
             if (status == 1)
             {
                 std::cout << "Phương trình có nghiệm x = ";
-                write_fraction(numX, denX);
+                write_fraction(x);
                 std::cout << '\n';
             }
             break;
