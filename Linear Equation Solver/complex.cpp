@@ -1,50 +1,49 @@
 #include "complex.h"
 
 // Calculate (a + bi) + (c + di)
-void complex_add(double& real, double& imag, double a, double b, double c, double d)
+void complex_add(Complex& result, Complex a, Complex b)
 {
-	real = a + c;
-	imag = b + d;
+	result.real = a.real + b.real;
+	result.imag = a.imag + b.imag;
 }
 
 // Calculate (a + bi) - (c + di)
-void complex_sub(double& real, double& imag, double a, double b, double c, double d)
+void complex_sub(Complex& result, Complex a, Complex b)
 {
-	complex_add(real, imag, a, b, -c, -d);
+	b.real = -b.real;
+	b.imag = -b.imag;
+	complex_add(result, a, b);
 }
 
 // Calculate (a + bi) * (c + di)
-void complex_mul(double& real, double& imag, double a, double b, double c, double d)
+void complex_mul(Complex& result, Complex a, Complex b)
 {
-	real = a * c - b * d;
-	imag = a * d + b * c;
+	result.real = a.real * b.real - a.imag * b.imag;
+	result.imag = a.real * b.imag + a.imag * b.real;
 }
 
 // Calculate (a + bi) / (c + di)
-bool complex_div(double& real, double& imag, double a, double b, double c, double d)
+bool complex_div(Complex& result, Complex a, Complex b)
 {
-	if (c == 0 && d == 0) return false;
-	double den = c * c + d * d;
-	real = (a * c + b * d) / den;
-	imag = (b * c - a * d) / den;
+	if (b.real == 0 && b.imag == 0) return false;
+	double den = b.real * b.real + b.imag * b.imag;
+	result.real = (a.real * b.real + a.imag * b.imag) / den;
+	result.imag = (a.imag * b.real - a.real * b.imag) / den;
 	return true;
 }
 
 // Solve Ax + B = Cx + D, with the coefficients as complex numbers
-int solve_eq_complex(double& realX, double& imagX,
-	double realA, double imagA, double realB, double imagB,
-	double realC, double imagC, double realD, double imagD
-)
+int solve_eq_complex(Complex& result, Complex a, Complex b, Complex c, Complex d)
 {
 	// 1. Rearrange: (A - C)x = D - B
-	complex_sub(realA, imagA, realA, imagA, realC, imagC);
-	complex_sub(realB, imagB, realD, imagD, realB, imagB);
+	complex_sub(a, a, c);
+	complex_sub(b, d, b);
 
 	// 2. Special case: A == 0
-	if (realA == 0 && imagA == 0)
+	if (a.real == 0 && a.imag == 0)
 	{
 		// 2.1 B == 0 => Infinite solutions
-		if (realB == 0 && imagB == 0) return -1;
+		if (b.real == 0 && b.imag == 0) return -1;
 
 		// 2.2 B != 0 => No solutions
 		else return 0;
@@ -52,7 +51,7 @@ int solve_eq_complex(double& realX, double& imagX,
 	else
 	{
 		// 2.3: x = (D - B)/(A - C)
-		complex_div(realX, imagX, realB, imagB, realA, imagA);
+		complex_div(result, b, a);
 		return 1;
 	}
 }

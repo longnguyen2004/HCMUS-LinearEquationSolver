@@ -84,17 +84,17 @@ int main()
         }
         case 3:
         {
-            double realA, imagA, realB, imagB, realC = 0, imagC = 0, realD = 0, imagD = 0;
+            Complex a, b, c = { 0, 0 }, d = { 0, 0 };
             if (eq_type == 1)
-                read_eq_complex_type1(realA, imagA, realB, imagB);
+                read_eq_complex_type1(a, b);
             else
-                read_eq_complex_type2(realA, imagA, realB, imagB, realC, imagC, realD, imagD);
-            double realX, imagX;
-            status = solve_eq_complex(realX, imagX, realA, imagA, realB, imagB, realC, imagC, realD, imagD);
+                read_eq_complex_type2(a, b, c, d);
+            Complex x;
+            status = solve_eq_complex(x, a, b, c, d);
             if (status == 1)
             {
                 std::cout << "Phương trình có nghiệm x = ";
-                write_complex(realX, imagX);
+                write_complex(x);
                 std::cout << '\n';
             }
             break;

@@ -10,12 +10,12 @@ void write_fraction(int num, int den)
 		std::cout << num << '/' << den;
 }
 
-void write_complex(double real, double imag)
+void write_complex(Complex a)
 {
-	std::cout << real;
-	if (imag != 0)
+	std::cout << a.real;
+	if (a.imag != 0)
 	{
-		if (imag > 0) std::cout << '+';
-		std::cout << imag << 'i';
+		if (a.imag > 0) std::cout << '+';
+		std::cout << a.imag << 'i';
 	}
 }
