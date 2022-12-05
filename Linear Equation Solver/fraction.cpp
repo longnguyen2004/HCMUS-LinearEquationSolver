@@ -58,7 +58,7 @@ int solve_eq_fraction(Fraction& result, Fraction a, Fraction b, Fraction c, Frac
 	// 2. Special case: A == 0
 	if (!a.num) {
 		// 2.1 B == 0 => Infinite solutions
-		if (!a.den) return -1;
+		if (!b.num) return -1;
 
 		// 2.2 B != 0 => No solutions
 		else return 0;
